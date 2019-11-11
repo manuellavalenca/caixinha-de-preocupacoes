@@ -43,7 +43,7 @@ struct ContentView: View {
                         Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
                             .frame(width: 25.0, height: 2.0, alignment: .center)
                         VStack {
-                            HStack{
+                            HStack {
                                 Spacer()
                                 TextField("Abre o coração", text: $textAdded).border(Color(colors.lightBlue), width: 1).cornerRadius(10.0).frame(width: 200, height: 200, alignment: .center).lineLimit(nil)
                                 Spacer()
@@ -57,9 +57,18 @@ struct ContentView: View {
                     
                     // Seção de ver bilhetinhos
                     Section(header: Text("caixinha").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        HStack(alignment: .center) {
-                            Spacer()
-                    }
+                        ScrollView (.horizontal, showsIndicators: false) {
+                             HStack {
+                                 Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                                    .frame(width: 300.0, height: 250.0, alignment: .center)
+                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                                .frame(width: 300.0, height: 250.0, alignment: .center)
+                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                                .frame(width: 300.0, height: 250.0, alignment: .center)
+                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                                .frame(width: 300.0, height: 250.0, alignment: .center)
+                             }
+                        }
                     }.padding(.horizontal)
                 }
             }
