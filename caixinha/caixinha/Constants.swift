@@ -19,5 +19,6 @@ class Fonts {
     let headlineCustom = Font.custom("Futura", size: 20)
     let captionCustom = Font.custom("Futura", size: 15)
 }
+
 let colors = Colors()
 let fonts = Fonts()

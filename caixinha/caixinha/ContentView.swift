@@ -15,58 +15,53 @@ struct ContentView: View {
     
     @State var textAdded: String = ""
     @State var buttonSelected: String = ""
+    var categories: [String] = ["trabalho", "relacionamentos", "saúde"]
     
     var body: some View {
         NavigationView {
             ScrollView {
-                // Seção de adicionar bilhetinho
                 Spacer()
                 VStack(alignment: .leading, spacing: 16) {
                     Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         HStack(alignment: .center) {
                             Spacer()
-                            Button(action: {}) {
-                                Text("trabalho")
-                            }.buttonStyle(CategoryButtonStyle())
-                            Spacer()
-                            Button(action: {
-                                //print
-                            }) { Text("relacionamentos")
-                            }.buttonStyle(CategoryButtonStyle())
-                            Spacer()
-                            Button(action: {
-                                //print
-                            }) { Text("saúde")
-                            }.buttonStyle(CategoryButtonStyle())
+                            ForEach(self.categories, id: \.self) { category in
+                                Button(action: {}) {
+                                    Text(category)
+                                }.buttonStyle(CategoryButtonStyle())
+                            }
                             Spacer()
                         }
-                        Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                            .frame(width: 25.0, height: 2.0, alignment: .center)
+                        CategoryIndicatorView()
                         VStack {
                             HStack {
                                 Spacer()
-                                TextField("Abre o coração", text: $textAdded).border(Color(colors.lightBlue), width: 1).cornerRadius(10.0).frame(width: 200, height: 200, alignment: .center).lineLimit(nil)
+                                TextView(text: $textAdded)
+                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity, alignment: .center)
+                                .border(Color(colors.lightBlue), width: 2.0)
+                                .statusBar(hidden: true)
+                                .cornerRadius(20)
+                                .font(fonts.headlineCustom)
+                                .foregroundColor(Color(colors.darkGray))
                                 Spacer()
                             }
                             Button(action: {
-                                //print
-                            }) { Text("adicionar bilhete")
+                                User.shared.addNote(text: "oie", category: "trabalho")
+                                print(User.shared.notes)
+                            }) {
+                                Text("adicionar bilhete")
                             }.buttonStyle(AddButtonStyle())
                         }
                     }.padding(.horizontal)
                     
-                    // Seção de ver bilhetinhos
                     Section(header: Text("caixinha").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         ScrollView (.horizontal, showsIndicators: false) {
                              HStack {
-                                 Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                                    .frame(width: 300.0, height: 250.0, alignment: .center)
-                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                                .frame(width: 300.0, height: 250.0, alignment: .center)
-                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                                .frame(width: 300.0, height: 250.0, alignment: .center)
-                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                                .frame(width: 300.0, height: 250.0, alignment: .center)
+                                ForEach(self.categories, id: \.self) { category in
+                                    ZStack {
+                                        CategoryCellView(category: category)
+                                    }
+                                }
                              }
                         }
                     }.padding(.horizontal)
