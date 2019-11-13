@@ -46,8 +46,9 @@ struct ContentView: View {
                                 Spacer()
                             }
                             Button(action: {
-                                User.shared.addNote(text: "oie", category: "trabalho")
+                                User.shared.addNote(text: self.textAdded, category: "trabalho")
                                 print(User.shared.notes)
+                                print("Texto: \(self.textAdded)")
                             }) {
                                 Text("adicionar bilhete")
                             }.buttonStyle(AddButtonStyle())
