@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ListView: View {
     let category: String
-    var notes: [String] = []
     
     init(category: String) {
         self.category = category
@@ -29,7 +28,7 @@ struct ListView: View {
                             ZStack{
                                 Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
                                     .frame(width: 350.0, height: 125.0, alignment: .center)
-                                Text(note.text)
+                                Text(note.text).frame(width: 350.0, height: 125.0, alignment: .center)
                             }
                             Spacer()
                         }

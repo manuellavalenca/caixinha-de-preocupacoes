@@ -12,12 +12,17 @@ import UIKit
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
-    
-    func makeUIView(context: Context) -> UITextView {
+
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
+        let view = UITextView()
+        view.isEditable = true
         return UITextView()
     }
     
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
+    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
+        text = uiView.text
+//        print("oia o texto na view: \(String(describing: uiView.text))")
+//        print("oia o texto na textview: \(self.text)")
     }
+    
 }

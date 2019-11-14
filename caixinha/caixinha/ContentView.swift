@@ -7,15 +7,18 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+        self.textAdded = ""
     }
     
-    @State var textAdded: String = ""
+    @State var textAdded = ""
     @State var buttonSelected: String = ""
-    var categories: [String] = ["trabalho", "relacionamentos", "saúde"]
+    @State var categorySelected = "trabalho"
+    @State var showingDetail = false
     
     var body: some View {
         NavigationView {
@@ -25,8 +28,11 @@ struct ContentView: View {
                     Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         HStack(alignment: .center) {
                             Spacer()
-                            ForEach(self.categories, id: \.self) { category in
-                                Button(action: {}) {
+                            ForEach(User.shared.categories, id: \.self) { category in
+                                Button(action: {
+                                    self.categorySelected = category
+                                    print("selected \(self.categorySelected)")
+                                }) {
                                     Text(category)
                                 }.buttonStyle(CategoryButtonStyle())
                             }
@@ -37,7 +43,7 @@ struct ContentView: View {
                             HStack {
                                 Spacer()
                                 TextView(text: $textAdded)
-                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity, alignment: .center)
+                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity)
                                 .border(Color(colors.lightBlue), width: 2.0)
                                 .statusBar(hidden: true)
                                 .cornerRadius(20)
@@ -45,20 +51,25 @@ struct ContentView: View {
                                 .foregroundColor(Color(colors.darkGray))
                                 Spacer()
                             }
+//                            NavigationLink(destination: NoteAddedView(text: self.textAdded, category: self.categorySelected)){
+//                                Text("adicionar bilhete")
+//                            }.font(fonts.headlineCustom).foregroundColor(Color.blue)
+//
                             Button(action: {
-                                User.shared.addNote(text: self.textAdded, category: "trabalho")
-                                print(User.shared.notes)
-                                print("Texto: \(self.textAdded)")
+                                self.showingDetail.toggle()
                             }) {
                                 Text("adicionar bilhete")
                             }.buttonStyle(AddButtonStyle())
+                            .sheet(isPresented: $showingDetail) {
+                                NoteAddedView(text: self.textAdded, category: self.categorySelected)
+                            }
                         }
                     }.padding(.horizontal)
                     
                     Section(header: Text("caixinha").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         ScrollView (.horizontal, showsIndicators: false) {
                              HStack {
-                                ForEach(self.categories, id: \.self) { category in
+                                ForEach(User.shared.categories, id: \.self) { category in
                                     ZStack {
                                         CategoryCellView(category: category)
                                     }
