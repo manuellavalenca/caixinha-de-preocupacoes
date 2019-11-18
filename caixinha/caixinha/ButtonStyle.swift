@@ -24,3 +24,20 @@ struct AddButtonStyle: ButtonStyle {
             .font(fonts.captionCustom)
     }
 }
+
+//struct AddButtonStyle: ButtonStyle {
+//    func makeBody(configuration: Self.Configuration) -> some View {
+//        ZStack{
+//            Circle().stroke(Color(colors.lightBlue), lineWidth: 2).frame(width: 250, height: 125)
+//            Rectangle()
+//            .fill(Color(colors.lightBlue))
+//            .frame(width: 70, height: 10)
+//            Rectangle()
+//            .fill(Color(colors.lightBlue))
+//            .frame(width: 10, height: 70)
+//        }
+//        configuration.label
+//            .foregroundColor(configuration.isPressed ? Color.gray : Color(colors.lightBlue))
+//            .font(fonts.captionCustom)
+//    }
+//}

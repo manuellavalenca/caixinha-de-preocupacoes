@@ -19,5 +19,7 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
+        print("OLHA: \(self.text)")
+        User.shared.addNote(text: self.text, category: "trabalho")
     }
 }
