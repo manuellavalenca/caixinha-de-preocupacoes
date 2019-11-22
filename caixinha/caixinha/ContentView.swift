@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 import UIKit
 
 struct ContentView: View {
@@ -19,13 +20,20 @@ struct ContentView: View {
     @State var buttonSelected: String = ""
     @State var categorySelected = "trabalho"
     @State var showingDetail = false
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: UserData.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \UserData.categories, ascending: true)
+        ]
+    ) var categories: FetchedResults<UserData>
     
     var body: some View {
         NavigationView {
             ScrollView {
                 Spacer()
                 VStack(alignment: .leading, spacing: 16) {
-                    Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                    Section {
                         HStack(alignment: .center) {
                             Spacer()
                             ForEach(User.shared.categories, id: \.self) { category in
@@ -42,39 +50,46 @@ struct ContentView: View {
                         VStack {
                             HStack {
                                 Spacer()
-                                TextView(text: $textAdded)
-                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity)
-                                .border(Color(colors.lightBlue), width: 2.0)
-                                .statusBar(hidden: true)
-                                .cornerRadius(20)
-                                .font(fonts.headlineCustom)
-                                .foregroundColor(Color(colors.darkGray))
+                                TextField("Escreva sua preocupação", text: $textAdded)
+                                    .border(Color(colors.transparentBlue), width: 1.0)
+                                    .cornerRadius(6)
+                                    .font(fonts.captionCustom)
+                                //                                TextView(text: $textAdded)
+                                //                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity)
+                                //                                .border(Color(colors.lightBlue), width: 2.0)
+                                //                                .statusBar(hidden: true)
+                                //                                .cornerRadius(20)
+                                //                                .font(fonts.headlineCustom)
+                                //                                .foregroundColor(Color(colors.darkGray))
                                 Spacer()
                             }
-//                            NavigationLink(destination: NoteAddedView(text: self.textAdded, category: self.categorySelected)){
-//                                Text("adicionar bilhete")
-//                            }.font(fonts.headlineCustom).foregroundColor(Color.blue)
-//
+                            
                             Button(action: {
-                                self.showingDetail.toggle()
+                                //self.showingDetail.toggle()
+                                if self.textAdded != "" {
+                                    User.shared.addNote(text: self.textAdded, category: self.categorySelected)
+                                }
+                                self.textAdded = ""
                             }) {
                                 Text("adicionar bilhete")
                             }.buttonStyle(AddButtonStyle())
-                            .sheet(isPresented: $showingDetail) {
-                                NoteAddedView(text: self.textAdded, category: self.categorySelected)
-                            }
+                            //                            .sheet(isPresented: $showingDetail) {
+                            //                                NoteAddedView(text: self.textAdded, category: self.categorySelected)
+                            //                            }
                         }
                     }.padding(.horizontal)
                     
-                    Section(header: Text("caixinha").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        ScrollView (.horizontal, showsIndicators: false) {
-                             HStack {
-                                ForEach(User.shared.categories, id: \.self) { category in
-                                    ZStack {
-                                        CategoryCellView(category: category)
+                    Section(header: Text("explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                        ScrollView (.vertical, showsIndicators: false) {
+                            VStack {
+                                    ForEach(User.shared.categories, id: \.self) { category in
+                                        HStack {
+                                            Spacer()
+                                            CategoryCellView(category: category)
+                                            Spacer()
                                     }
                                 }
-                             }
+                            }
                         }
                     }.padding(.horizontal)
                 }

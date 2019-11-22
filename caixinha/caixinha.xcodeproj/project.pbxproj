@@ -11,6 +11,8 @@
 		4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B630237C390D00929AA6 /* CategoryCellView.swift */; };
 		4965B635237C48B500929AA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B634237C48B500929AA6 /* User.swift */; };
 		4965B639237DA88300929AA6 /* NoteAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B638237DA88300929AA6 /* NoteAddedView.swift */; };
+		4965B6412388065600929AA6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4965B6402388065600929AA6 /* CloudKit.framework */; };
+		4965B6442388086A00929AA6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4965B6422388086A00929AA6 /* DataModel.xcdatamodeld */; };
 		498CA032237C337F004D9343 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CA031237C337F004D9343 /* ListView.swift */; };
 		49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5618323798B0B00CD02E8 /* AppDelegate.swift */; };
 		49D5618623798B0B00CD02E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5618523798B0B00CD02E8 /* SceneDelegate.swift */; };
@@ -48,6 +50,9 @@
 		4965B630237C390D00929AA6 /* CategoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellView.swift; sourceTree = "<group>"; };
 		4965B634237C48B500929AA6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4965B638237DA88300929AA6 /* NoteAddedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAddedView.swift; sourceTree = "<group>"; };
+		4965B63E2388064100929AA6 /* caixinha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = caixinha.entitlements; sourceTree = "<group>"; };
+		4965B6402388065600929AA6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		4965B6432388086A00929AA6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		498CA031237C337F004D9343 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		49D5618023798B0B00CD02E8 /* caixinha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = caixinha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D5618323798B0B00CD02E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4965B6412388065600929AA6 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4965B63F2388065600929AA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4965B6402388065600929AA6 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		49D5617723798B0B00CD02E8 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +115,7 @@
 				49D5619C23798B0C00CD02E8 /* caixinhaTests */,
 				49D561A723798B0C00CD02E8 /* caixinhaUITests */,
 				49D5618123798B0B00CD02E8 /* Products */,
+				4965B63F2388065600929AA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,12 +132,14 @@
 		49D5618223798B0B00CD02E8 /* caixinha */ = {
 			isa = PBXGroup;
 			children = (
+				4965B63E2388064100929AA6 /* caixinha.entitlements */,
 				49D5618323798B0B00CD02E8 /* AppDelegate.swift */,
+				4965B6422388086A00929AA6 /* DataModel.xcdatamodeld */,
+				4965B634237C48B500929AA6 /* User.swift */,
 				49D561B623799DF800CD02E8 /* Constants.swift */,
 				49D561B82379B15600CD02E8 /* ButtonStyle.swift */,
 				49D561BA237ADB2B00CD02E8 /* TextView.swift */,
 				498CA031237C337F004D9343 /* ListView.swift */,
-				4965B634237C48B500929AA6 /* User.swift */,
 				49D5618A23798B0B00CD02E8 /* ContentView.swift */,
 				4965B638237DA88300929AA6 /* NoteAddedView.swift */,
 				4965B630237C390D00929AA6 /* CategoryCellView.swift */,
@@ -304,6 +321,7 @@
 				4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */,
 				4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */,
 				49D5618B23798B0B00CD02E8 /* ContentView.swift in Sources */,
+				4965B6442388086A00929AA6 /* DataModel.xcdatamodeld in Sources */,
 				49D5618623798B0B00CD02E8 /* SceneDelegate.swift in Sources */,
 				4965B635237C48B500929AA6 /* User.swift in Sources */,
 			);
@@ -470,6 +488,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = caixinha/caixinha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"caixinha/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M67K4CFU7;
@@ -490,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = caixinha/caixinha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"caixinha/Preview Content\"";
 				DEVELOPMENT_TEAM = 6M67K4CFU7;
@@ -632,6 +652,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		4965B6422388086A00929AA6 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4965B6432388086A00929AA6 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 4965B6432388086A00929AA6 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		49D5618723798B0B00CD02E8 /* caixinha.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -17,10 +17,12 @@ struct CategoryCellView: View {
     }
     var body: some View {
         ZStack {
-            Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-            .frame(width: 300.0, height: 250.0, alignment: .center)
             NavigationLink(destination: ListView(category: category)){
-                Text(self.category)
+                ZStack {
+                    Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                    .frame(width: 380.0, height: 150.0, alignment: .center)
+                    Text(self.category)
+                }
             }.font(fonts.headlineCustom).foregroundColor(Color.white)
         }
     }

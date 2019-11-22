@@ -12,6 +12,7 @@ import UIKit
 
 class Colors {
     let lightBlue = UIColor(red: 35/255, green: 129/255, blue: 203/255, alpha: 1)
+    let transparentBlue = UIColor(red: 35/255, green: 129/255, blue: 203/255, alpha: 0.6)
     let darkGray = UIColor(red: 101/255, green: 93/255, blue: 93/255, alpha: 1)
 }
 class Fonts {
