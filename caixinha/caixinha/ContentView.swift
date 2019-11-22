@@ -14,7 +14,11 @@ struct ContentView: View {
     }
     
     @State var buttonSelected: String = ""
-    @State var showingDetail = false
+    //@State var showingDetail = false
+    @State var detail: ModalDetail?
+    @State var textAdded: String = ""
+    //@Environment(\.presentationMode) var presentationMode
+    @State var categorySelected = "trabalho"
     
     var body: some View {
         NavigationView {
@@ -25,18 +29,19 @@ struct ContentView: View {
                         Spacer()
                         ZStack{
                             Button(action: {
-                                self.showingDetail.toggle()
+                                //self.showingDetail.toggle()
+                                self.detail = ModalDetail(body: "Detail")
                             }){
-                                Image("addButton")
-                            }.sheet(isPresented: $showingDetail) {
-                                AddButtonView()
-                            }
+                                Image("addButton").resizable().frame(width: 50, height: 50, alignment: .center)
+                            }.sheet(item: $detail, content: { detail in
+                                self.modal(detail: detail.body)
+                            })
                         }
                         Spacer()
                     }
                     Section {
                         ScrollView (.horizontal, showsIndicators: false) {
-                             VStack {
+                            VStack {
                                 ForEach(User.shared.categories, id: \.self) { category in
                                     HStack {
                                         Spacer()
@@ -44,7 +49,7 @@ struct ContentView: View {
                                         Spacer()
                                     }
                                 }
-                             }
+                            }
                         }
                     }.padding(.horizontal)
                 }
@@ -54,6 +59,50 @@ struct ContentView: View {
             .padding(.top)
         }
     }
+    
+    func modal(detail: String) -> some View {
+        VStack{
+            HStack() {
+                Spacer()
+                ForEach(User.shared.categories, id: \.self) { category in
+                    Button(action: {
+                        self.categorySelected = category
+                        print("selected \(self.categorySelected)")
+                    }) {
+                        Text(category)
+                    }.buttonStyle(CategoryButtonStyle())
+                }
+                Spacer()
+            }
+            CategoryIndicatorView()
+            VStack {
+                HStack {
+                    Spacer()
+                    TextView(text: $textAdded)
+                        .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity)
+                        .border(Color(colors.lightBlue), width: 2.0)
+                        .statusBar(hidden: true)
+                        .cornerRadius(20)
+                        .font(fonts.headlineCustom)
+                        .foregroundColor(Color(colors.darkGray))
+                    Spacer()
+                }
+                Button(action: {
+                   print("oie")
+                }) {
+                    Text("adicionar bilhete")
+                }.buttonStyle(AddButtonStyle())
+            }
+        }.frame(width: 300, height: 150, alignment: .center)
+    }
+}
+
+struct ModalDetail: Identifiable {
+    var id: String {
+        return body
+    }
+    
+    let body: String
 }
 
 struct ContentView_Previews: PreviewProvider {
