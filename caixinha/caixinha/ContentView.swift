@@ -17,9 +17,7 @@ struct ContentView: View {
     }
     
     @State var textAdded = ""
-    @State var buttonSelected: String = ""
     @State var categorySelected = "trabalho"
-    @State var showingDetail = false
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: UserData.entity(),
@@ -29,43 +27,15 @@ struct ContentView: View {
     ) var categories: FetchedResults<UserData>
     
     var body: some View {
-        NavigationView {
+        NavigationView() {
             ScrollView {
-                Spacer()
-                VStack(alignment: .leading, spacing: 16) {
+                Spacer(minLength: 30)
+                VStack(alignment: .leading, spacing: 30) {
                     Section {
-                        HStack(alignment: .center) {
-                            Spacer()
-                            ForEach(User.shared.categories, id: \.self) { category in
-                                Button(action: {
-                                    self.categorySelected = category
-                                    print("selected \(self.categorySelected)")
-                                }) {
-                                    Text(category)
-                                }.buttonStyle(CategoryButtonStyle())
-                            }
-                            Spacer()
-                        }
-                        CategoryIndicatorView()
-                        VStack {
-                            HStack {
-                                Spacer()
-                                TextField("Escreva sua preocupação", text: $textAdded)
-                                    .border(Color(colors.transparentBlue), width: 1.0)
-                                    .cornerRadius(6)
-                                    .font(fonts.captionCustom)
-                                //                                TextView(text: $textAdded)
-                                //                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity)
-                                //                                .border(Color(colors.lightBlue), width: 2.0)
-                                //                                .statusBar(hidden: true)
-                                //                                .cornerRadius(20)
-                                //                                .font(fonts.headlineCustom)
-                                //                                .foregroundColor(Color(colors.darkGray))
-                                Spacer()
-                            }
-                            
+                        VStack(spacing: 30) {
+                            TextFieldView(currentText: $textAdded)
+                            ChooseCategoryView(currentCategory: $categorySelected)
                             Button(action: {
-                                //self.showingDetail.toggle()
                                 if self.textAdded != "" {
                                     User.shared.addNote(text: self.textAdded, category: self.categorySelected)
                                 }
@@ -73,30 +43,27 @@ struct ContentView: View {
                             }) {
                                 Text("adicionar bilhete")
                             }.buttonStyle(AddButtonStyle())
-                            //                            .sheet(isPresented: $showingDetail) {
-                            //                                NoteAddedView(text: self.textAdded, category: self.categorySelected)
-                            //                            }
                         }
                     }.padding(.horizontal)
                     
                     Section(header: Text("explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         ScrollView (.vertical, showsIndicators: false) {
                             VStack {
-                                    ForEach(User.shared.categories, id: \.self) { category in
-                                        HStack {
-                                            Spacer()
-                                            CategoryCellView(category: category)
-                                            Spacer()
+                                ForEach(User.shared.categories, id: \.self) { category in
+                                    HStack {
+                                        Spacer()
+                                        CategoryCellView(category: category)
+                                        Spacer()
                                     }
                                 }
                             }
                         }
-                    }.padding(.horizontal)
+                    }.padding()
                 }
             }
             .navigationBarTitle("caixinha de preocupações", displayMode: .large).lineLimit(nil)
             .listStyle(GroupedListStyle())
-            .padding(.top)
+            .padding()
         }
     }
 }

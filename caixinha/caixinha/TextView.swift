@@ -10,19 +10,38 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct TextView: UIViewRepresentable {
-    @Binding var text: String
+struct TextFieldView: View {
+    @Binding var currentText: String
 
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
-        let view = UITextView()
-        view.isEditable = true
-        return UITextView()
+    var body: some View {
+        HStack {
+            Spacer()
+            TextField("Escreva sua preocupação", text: $currentText)
+                .font(fonts.captionCustom)
+                .foregroundColor(Color(colors.darkGray))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(colors.transparentBlue), lineWidth: 2)
+            )
+            Spacer()
+        }
     }
-    
-    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
-        text = uiView.text
-//        print("oia o texto na view: \(String(describing: uiView.text))")
-//        print("oia o texto na textview: \(self.text)")
-    }
-    
 }
+
+//struct TextView: UIViewRepresentable {
+//    @Binding var text: String
+//
+//    func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
+//        let view = UITextView()
+//        view.isEditable = true
+//        return UITextView()
+//    }
+//
+//    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
+//        text = uiView.text
+////        print("oia o texto na view: \(String(describing: uiView.text))")
+////        print("oia o texto na textview: \(self.text)")
+//    }
+//
+//}
