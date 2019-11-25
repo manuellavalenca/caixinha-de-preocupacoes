@@ -15,18 +15,14 @@ struct ContentView: View {
     @State private var textAdded = ""
     @State private var categorySelected = "trabalho"
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(
-        entity: UserData.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \UserData.categories, ascending: true),
-            NSSortDescriptor(keyPath: \UserData.notes, ascending: true)
-        ]
-    ) var userCD: FetchedResults<UserData>
+    @FetchRequest(fetchRequest: NoteCD.getAllNotes()) var notes: FetchedResults<NoteCD>
+    
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         self.textAdded = ""
-        self.updateCD()
+        //self.createUserCD()
+        //self.updateCD()
     }
     
     var body: some View {
@@ -34,24 +30,28 @@ struct ContentView: View {
             ScrollView {
                 Spacer(minLength: 30)
                 VStack(alignment: .leading, spacing: 10) {
-                    Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                    Section(header: Text("Adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         VStack(spacing: 10) {
                             ChooseCategoryView(currentCategory: $categorySelected)
                             HStack {
                                 TextFieldView(currentText: $textAdded)
                                 Button(action: {
                                     if self.textAdded != "" {
-                                        User.shared.addNote(text: self.textAdded, category: self.categorySelected)
+                                        self.createNoteCD()
+                                        //User.shared.addNote(text: self.textAdded, category: self.categorySelected)
                                     }
                                     self.textAdded = ""
                                 }) {
                                     Text("guardar")
                                 }.buttonStyle(AddButtonStyle())
                             }
+                            ForEach(self.notes) { note in
+                                Text(note.text!)
+                            }
                         }
                     }.padding(.horizontal)
                     
-                    Section(header: Text("explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                    Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         ScrollView (.vertical, showsIndicators: false) {
                             VStack {
                                 ForEach(User.shared.categories, id: \.self) { category in
@@ -66,15 +66,25 @@ struct ContentView: View {
                     }.padding()
                 }
             }
-            .navigationBarTitle("caixinha de preocupações", displayMode: .large).lineLimit(nil)
+            .navigationBarTitle("Caixinha de preocupações", displayMode: .large).lineLimit(nil)
             .listStyle(GroupedListStyle())
             .padding()
         }
     }
-    
-    func updateCD() {
-        print(self.userCD)
+    func createNoteCD() {
+        let note = NoteCD(context: self.managedObjectContext)
+        note.text = self.textAdded
+        note.category = self.categorySelected
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
+        }
     }
+    
+//    func updateCD() {
+//        print("Oia os users \(self.users)")
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "DataModel")
+        let container = NSPersistentContainer(name: "caixinha")
         container.loadPersistentStores { description, error in
             if let error = error {
                 // Add your error UI here
