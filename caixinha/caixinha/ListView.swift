@@ -12,13 +12,13 @@ import Combine
 
 struct ListView: View {
     let category: String
-    @ObservedObject var user = User.shared
+    //@ObservedObject var user = User.shared
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: NoteCD.getAllNotes()) var notes: FetchedResults<NoteCD>
     
     init(category: String) {
         self.category = category
-        print(self.user.getNotes(from: self.category))
+        //print(self.user.getNotes(from: self.category))
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         UITableView.appearance().separatorColor = UIColor.clear
         UITableView.appearance().backgroundColor = UIColor.clear
@@ -42,8 +42,8 @@ struct ListView: View {
                 //print(self.user.getNotes(from: self.category))
                 print(self.notes)
                 for index in offsets {
-                    let notinhas = self.notes.filter{$0.category == self.category}
-                    let note = notinhas[index]
+                    let notesFromCategory = self.notes.filter{$0.category == self.category}
+                    let note = notesFromCategory[index]
                     self.managedObjectContext.delete(note)
                 }
                 do {

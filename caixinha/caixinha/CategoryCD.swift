@@ -16,8 +16,7 @@ public class CategoryCD: NSManagedObject, Identifiable {
 extension CategoryCD {
     static func getAllCategories() -> NSFetchRequest<CategoryCD> {
         let request: NSFetchRequest<CategoryCD> = CategoryCD.fetchRequest() as! NSFetchRequest<CategoryCD>
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        request.sortDescriptors = []
         return request
     }
 }
