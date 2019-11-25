@@ -32,13 +32,17 @@ struct ListView: View {
                     }
                     Spacer()
                 }
-            }.onDelete(perform: self.delete)
-        }.font(fonts.captionCustom)
+            }.onDelete{offsets in
+                User.shared.notes.remove(atOffsets: offsets)
+                print("delete")
+                print(User.shared.getNotes(from: self.category))
+            }
+        }   .font(fonts.captionCustom)
             .foregroundColor(Color.white)
             .navigationBarTitle(self.category)
     }
-     func delete(at offsets: IndexSet) {
-        User.shared.notes.remove(atOffsets: offsets)
-        print(User.shared.getNotes(from: self.category))
-    }
+//     func delete(at offsets: IndexSet) {
+//        User.shared.notes.remove(atOffsets: offsets)
+//        print(User.shared.getNotes(from: self.category))
+//    }
 }

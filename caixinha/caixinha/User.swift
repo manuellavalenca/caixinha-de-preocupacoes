@@ -11,7 +11,7 @@ import Foundation
 class User {
     static var shared = User()
     var notes: [Note] = []
-    var categories: [String] = ["trabalho", "relacionamentos", "saúde", "outros", "lero", "lero lero"]
+    var categories: [String] = ["trabalho", "relacionamentos", "saúde", "universidade"]
     
     func addNote(text: String, category: String) {
         self.notes.append(Note(text: text, category: category))
