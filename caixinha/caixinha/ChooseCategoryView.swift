@@ -18,14 +18,7 @@ struct ChooseCategoryView: View {
         VStack(spacing: 5){
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(alignment: .center, spacing: 10) {
-                    //Spacer()
-                    //                    Picker(selection: self.$currentCategory, label:
-                    //                        Text("Category")
-                    //                        , content: {
-                    //                            ForEach(0..<User.shared.categories.count) { index in
-                    //                                Text(User.shared.categories[index]).tag(index)
-                    //                            }
-                    //                    })
+                    Spacer()
                     ForEach(0..<User.shared.categories.count) { index in
                         Button(action: {
                             self.currentCategory = User.shared.categories[index]
@@ -35,6 +28,7 @@ struct ChooseCategoryView: View {
                         }.buttonStyle(CategoryButtonStyle())
                             .foregroundColor(self.currentCategory == User.shared.categories[index] ? Color.blue : Color.gray)
                     }
+                    Spacer()
                 }.padding()
             }
         }

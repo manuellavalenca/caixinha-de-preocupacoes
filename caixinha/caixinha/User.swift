@@ -8,9 +8,9 @@
 
 import Foundation
 
-class User {
+class User: ObservableObject {
     static var shared = User()
-    var notes: [Note] = []
+    @Published var notes = [Note]()
     var categories: [String] = ["trabalho", "relacionamentos", "saúde", "universidade"]
     
     func addNote(text: String, category: String) {
@@ -20,10 +20,6 @@ class User {
     func getNotes(from category: String) -> [Note] {
         return User.shared.notes.filter{$0.category == category}
     }
-    
-//    func removeNote(id: UUID) {
-//        User.shared.notes.filter{$0.id == id}.removeAll()
-//    }
 }
 
 struct Note: Identifiable {

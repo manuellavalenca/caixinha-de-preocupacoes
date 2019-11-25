@@ -8,13 +8,15 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct ListView: View {
     let category: String
+    @ObservedObject var user = User.shared
     
     init(category: String) {
         self.category = category
-        print(User.shared.getNotes(from: self.category))
+        print(self.user.getNotes(from: self.category))
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         UITableView.appearance().separatorColor = .clear
         UITableView.appearance().backgroundColor = UIColor.clear
@@ -22,7 +24,7 @@ struct ListView: View {
     
     var body: some View {
         List {
-            ForEach(User.shared.getNotes(from: self.category), id: \.id) { note in
+            ForEach(self.user.getNotes(from: self.category), id: \.id) { note in
                 HStack {
                     Spacer()
                     ZStack{
@@ -33,16 +35,12 @@ struct ListView: View {
                     Spacer()
                 }
             }.onDelete{offsets in
-                User.shared.notes.remove(atOffsets: offsets)
+                self.user.notes.remove(atOffsets: offsets)
                 print("delete")
-                print(User.shared.getNotes(from: self.category))
+                print(self.user.getNotes(from: self.category))
             }
         }   .font(fonts.captionCustom)
             .foregroundColor(Color.white)
             .navigationBarTitle(self.category)
     }
-//     func delete(at offsets: IndexSet) {
-//        User.shared.notes.remove(atOffsets: offsets)
-//        print(User.shared.getNotes(from: self.category))
-//    }
 }

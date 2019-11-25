@@ -9,15 +9,11 @@
 import SwiftUI
 import LocalAuthentication
 import UIKit
+import Combine
 
 struct ContentView: View {
-    init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
-        self.textAdded = ""
-    }
-    
-    @State var textAdded = ""
-    @State var categorySelected = "trabalho"
+    @State private var textAdded = ""
+    @State private var categorySelected = "trabalho"
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: UserData.entity(),
@@ -25,6 +21,11 @@ struct ContentView: View {
             NSSortDescriptor(keyPath: \UserData.categories, ascending: true)
         ]
     ) var categories: FetchedResults<UserData>
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+        self.textAdded = ""
+    }
     
     var body: some View {
         NavigationView() {
