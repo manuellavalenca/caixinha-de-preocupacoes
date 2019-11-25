@@ -18,7 +18,6 @@ struct ListView: View {
     
     init(category: String) {
         self.category = category
-        //print(self.user.getNotes(from: self.category))
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         UITableView.appearance().separatorColor = UIColor.clear
         UITableView.appearance().backgroundColor = UIColor.clear
@@ -37,10 +36,6 @@ struct ListView: View {
                     Spacer()
                 }
             }.onDelete{offsets in
-                //self.user.notes.remove(atOffsets: offsets)
-                //print("delete")
-                //print(self.user.getNotes(from: self.category))
-                print(self.notes)
                 for index in offsets {
                     let notesFromCategory = self.notes.filter{$0.category == self.category}
                     let note = notesFromCategory[index]
@@ -51,8 +46,6 @@ struct ListView: View {
                 } catch {
                     print(error)
                 }
-                print("delete")
-                print(self.notes)
             }
         }   .font(fonts.captionCustom)
             .foregroundColor(Color.white)

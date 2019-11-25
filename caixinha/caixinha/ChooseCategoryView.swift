@@ -14,16 +14,13 @@ struct ChooseCategoryView: View {
     @Binding var currentCategory: String
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: CategoryCD.getAllCategories()) var categoriesCD: FetchedResults<CategoryCD>
-    var allCategories: [String] = ["trabalho", "relacionamentos", "saúde"]
+    var allCategories: [String] = User.shared.categories
     
     var body: some View {
         VStack(spacing: 5) {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(alignment: .center, spacing: 10) {
                     Spacer()
-                    //                    ForEach(0..<self.categoriesCD.count) { index in
-                    //                        self.allCategories.append(self.categoriesCD[index].name!)
-                    //                    }
                     ForEach(0..<self.allCategories.count) { index in
                         Spacer()
                         Button(action: {

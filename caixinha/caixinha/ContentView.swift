@@ -17,11 +17,10 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: NoteCD.getAllNotes()) var notes: FetchedResults<NoteCD>
     
+    
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         self.textAdded = ""
-        //self.createUserCD()
-        //self.updateCD()
     }
     
     var body: some View {
@@ -37,7 +36,6 @@ struct ContentView: View {
                                 Button(action: {
                                     if self.textAdded != "" {
                                         self.createNoteCD()
-                                        //User.shared.addNote(text: self.textAdded, category: self.categorySelected)
                                     }
                                     self.textAdded = ""
                                 }) {
