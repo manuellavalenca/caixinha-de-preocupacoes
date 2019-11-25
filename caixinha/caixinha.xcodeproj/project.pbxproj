@@ -10,7 +10,6 @@
 		4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */; };
 		4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B630237C390D00929AA6 /* CategoryCellView.swift */; };
 		4965B635237C48B500929AA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B634237C48B500929AA6 /* User.swift */; };
-		4965B639237DA88300929AA6 /* NoteAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B638237DA88300929AA6 /* NoteAddedView.swift */; };
 		4965B6412388065600929AA6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4965B6402388065600929AA6 /* CloudKit.framework */; };
 		498CA032237C337F004D9343 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CA031237C337F004D9343 /* ListView.swift */; };
 		49D3FCB82388783500EE8795 /* ChooseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */; };
@@ -27,6 +26,7 @@
 		49D561B92379B15600CD02E8 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561B82379B15600CD02E8 /* ButtonStyle.swift */; };
 		49D561BB237ADB2B00CD02E8 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561BA237ADB2B00CD02E8 /* TextView.swift */; };
 		49F097CD238C3A10008E1E5F /* NoteCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F097CC238C3A10008E1E5F /* NoteCD.swift */; };
+		49F097CF238C4122008E1E5F /* CategoryCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F097CE238C4122008E1E5F /* CategoryCD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,6 @@
 		4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndicatorView.swift; sourceTree = "<group>"; };
 		4965B630237C390D00929AA6 /* CategoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellView.swift; sourceTree = "<group>"; };
 		4965B634237C48B500929AA6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4965B638237DA88300929AA6 /* NoteAddedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAddedView.swift; sourceTree = "<group>"; };
 		4965B63E2388064100929AA6 /* caixinha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = caixinha.entitlements; sourceTree = "<group>"; };
 		4965B6402388065600929AA6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		498CA031237C337F004D9343 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		49D561B82379B15600CD02E8 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		49D561BA237ADB2B00CD02E8 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		49F097CC238C3A10008E1E5F /* NoteCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCD.swift; sourceTree = "<group>"; };
+		49F097CE238C4122008E1E5F /* CategoryCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +142,8 @@
 				49D561BA237ADB2B00CD02E8 /* TextView.swift */,
 				498CA031237C337F004D9343 /* ListView.swift */,
 				49F097CC238C3A10008E1E5F /* NoteCD.swift */,
+				49F097CE238C4122008E1E5F /* CategoryCD.swift */,
 				49D5618A23798B0B00CD02E8 /* ContentView.swift */,
-				4965B638237DA88300929AA6 /* NoteAddedView.swift */,
 				49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */,
 				4965B630237C390D00929AA6 /* CategoryCellView.swift */,
 				49D5618523798B0B00CD02E8 /* SceneDelegate.swift */,
@@ -316,11 +316,11 @@
 			files = (
 				498CA032237C337F004D9343 /* ListView.swift in Sources */,
 				49D3FCB82388783500EE8795 /* ChooseCategoryView.swift in Sources */,
+				49F097CF238C4122008E1E5F /* CategoryCD.swift in Sources */,
 				49D561B723799DF800CD02E8 /* Constants.swift in Sources */,
 				49D5618923798B0B00CD02E8 /* caixinha.xcdatamodeld in Sources */,
 				49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */,
 				49D561BB237ADB2B00CD02E8 /* TextView.swift in Sources */,
-				4965B639237DA88300929AA6 /* NoteAddedView.swift in Sources */,
 				49D561B92379B15600CD02E8 /* ButtonStyle.swift in Sources */,
 				4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */,
 				4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */,

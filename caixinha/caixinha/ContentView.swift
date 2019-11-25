@@ -17,7 +17,6 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: NoteCD.getAllNotes()) var notes: FetchedResults<NoteCD>
     
-    
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         self.textAdded = ""
@@ -81,10 +80,6 @@ struct ContentView: View {
             print(error)
         }
     }
-    
-//    func updateCD() {
-//        print("Oia os users \(self.users)")
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -12,20 +12,27 @@ import SwiftUI
 
 struct ChooseCategoryView: View {
     @Binding var currentCategory: String
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: CategoryCD.getAllCategories()) var categoriesCD: FetchedResults<CategoryCD>
+    var allCategories: [String] = ["trabalho", "relacionamentos", "saúde"]
     
     var body: some View {
-        VStack(spacing: 5){
+        VStack(spacing: 5) {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(alignment: .center, spacing: 10) {
                     Spacer()
-                    ForEach(0..<User.shared.categories.count) { index in
+                    //                    ForEach(0..<self.categoriesCD.count) { index in
+                    //                        self.allCategories.append(self.categoriesCD[index].name!)
+                    //                    }
+                    ForEach(0..<self.allCategories.count) { index in
+                        Spacer()
                         Button(action: {
-                            self.currentCategory = User.shared.categories[index]
+                            self.currentCategory = self.allCategories[index]
                             print("selected \(self.currentCategory)")
                         }) {
-                            Text(User.shared.categories[index])
+                            Text(self.allCategories[index])
                         }.buttonStyle(CategoryButtonStyle())
-                            .foregroundColor(self.currentCategory == User.shared.categories[index] ? Color.blue : Color.gray)
+                            .foregroundColor(self.currentCategory == self.allCategories[index] ? Color.blue : Color.gray)
                     }
                     Spacer()
                 }.padding()
