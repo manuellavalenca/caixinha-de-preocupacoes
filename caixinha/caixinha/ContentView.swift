@@ -18,13 +18,15 @@ struct ContentView: View {
     @FetchRequest(
         entity: UserData.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \UserData.categories, ascending: true)
+            NSSortDescriptor(keyPath: \UserData.categories, ascending: true),
+            NSSortDescriptor(keyPath: \UserData.notes, ascending: true)
         ]
-    ) var categories: FetchedResults<UserData>
+    ) var userCD: FetchedResults<UserData>
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
         self.textAdded = ""
+        self.updateCD()
     }
     
     var body: some View {
@@ -68,6 +70,10 @@ struct ContentView: View {
             .listStyle(GroupedListStyle())
             .padding()
         }
+    }
+    
+    func updateCD() {
+        print(self.userCD)
     }
 }
 

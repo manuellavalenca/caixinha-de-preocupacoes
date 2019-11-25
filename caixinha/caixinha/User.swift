@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class User: ObservableObject {
     static var shared = User()

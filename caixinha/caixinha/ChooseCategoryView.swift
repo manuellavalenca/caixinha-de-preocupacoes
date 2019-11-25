@@ -12,7 +12,6 @@ import SwiftUI
 
 struct ChooseCategoryView: View {
     @Binding var currentCategory: String
-    var categories: [String] = []
     
     var body: some View {
         VStack(spacing: 5){
