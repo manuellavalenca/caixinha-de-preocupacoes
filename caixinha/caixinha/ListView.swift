@@ -18,7 +18,7 @@ struct ListView: View {
         self.category = category
         print(self.user.getNotes(from: self.category))
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
-        UITableView.appearance().separatorColor = .clear
+        UITableView.appearance().separatorColor = UIColor.clear
         UITableView.appearance().backgroundColor = UIColor.clear
     }
     

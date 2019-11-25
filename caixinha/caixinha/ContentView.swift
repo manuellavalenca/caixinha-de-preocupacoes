@@ -31,19 +31,21 @@ struct ContentView: View {
         NavigationView() {
             ScrollView {
                 Spacer(minLength: 30)
-                VStack(alignment: .leading, spacing: 30) {
-                    Section {
-                        VStack(spacing: 30) {
-                            TextFieldView(currentText: $textAdded)
+                VStack(alignment: .leading, spacing: 10) {
+                    Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                        VStack(spacing: 10) {
                             ChooseCategoryView(currentCategory: $categorySelected)
-                            Button(action: {
-                                if self.textAdded != "" {
-                                    User.shared.addNote(text: self.textAdded, category: self.categorySelected)
-                                }
-                                self.textAdded = ""
-                            }) {
-                                Text("adicionar bilhete")
-                            }.buttonStyle(AddButtonStyle())
+                            HStack {
+                                TextFieldView(currentText: $textAdded)
+                                Button(action: {
+                                    if self.textAdded != "" {
+                                        User.shared.addNote(text: self.textAdded, category: self.categorySelected)
+                                    }
+                                    self.textAdded = ""
+                                }) {
+                                    Text("guardar")
+                                }.buttonStyle(AddButtonStyle())
+                            }
                         }
                     }.padding(.horizontal)
                     

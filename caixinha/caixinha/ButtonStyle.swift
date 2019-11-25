@@ -19,7 +19,11 @@ struct CategoryButtonStyle: ButtonStyle {
 struct AddButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(configuration.isPressed ? Color.gray : Color(colors.lightBlue))
+            .foregroundColor(configuration.isPressed ? Color.gray : Color.white)
             .font(fonts.captionCustom)
+            .padding()
+            .background(Color(colors.lightBlue))
+        .cornerRadius(15)
+        
     }
 }
