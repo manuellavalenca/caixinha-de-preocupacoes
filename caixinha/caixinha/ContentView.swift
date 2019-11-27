@@ -15,36 +15,35 @@ struct ContentView: View {
     @State private var textAdded = ""
     @State private var categorySelected = "trabalho"
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(fetchRequest: NoteCD.getAllNotes()) var notes: FetchedResults<NoteCD>
+    @FetchRequest(
+        entity: NoteCD.entity(),
+        sortDescriptors: []) var notes: FetchedResults<NoteCD>
     
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.smallTitleCustom!]
         self.textAdded = ""
     }
     
     var body: some View {
         NavigationView() {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 Spacer(minLength: 30)
                 VStack(alignment: .leading, spacing: 10) {
                     Section(header: Text("Adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
                         VStack(spacing: 10) {
                             ChooseCategoryView(currentCategory: $categorySelected)
-                            HStack {
                                 TextFieldView(currentText: $textAdded)
                                 Button(action: {
                                     if self.textAdded != "" {
                                         self.createNoteCD()
                                     }
                                     self.textAdded = ""
+                                    UIApplication.shared.endEditing()
                                 }) {
                                     Text("guardar")
                                 }.buttonStyle(AddButtonStyle())
-                            }
-                            ForEach(self.notes) { note in
-                                Text(note.text!)
-                            }
                         }
                     }.padding(.horizontal)
                     
@@ -63,9 +62,9 @@ struct ContentView: View {
                     }.padding()
                 }
             }
-            .navigationBarTitle("Caixinha de preocupações", displayMode: .large).lineLimit(nil)
-            .listStyle(GroupedListStyle())
-            .padding()
+            .navigationBarTitle("Caixinha", displayMode: .automatic)
+            //.listStyle(GroupedListStyle())
+            //.padding()
         }
     }
     func createNoteCD() {
@@ -92,5 +91,11 @@ struct SectionHeader: View {
     var body: some View {
         Text(title)
             .font(.headline)
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

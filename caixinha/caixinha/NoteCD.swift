@@ -14,11 +14,11 @@ public class NoteCD: NSManagedObject, Identifiable {
     @NSManaged public var text: String?
 }
 
-extension NoteCD {
-    static func getAllNotes() -> NSFetchRequest<NoteCD> {
-        let request: NSFetchRequest<NoteCD> = NoteCD.fetchRequest() as! NSFetchRequest<NoteCD>
-        //let sortDescriptor = NSSortDescriptor(key: "text", ascending: false)
-        request.sortDescriptors = []
-        return request
-    }
-}
+//extension NoteCD {
+//    static func getAllNotes() -> NSFetchRequest<NoteCD> {
+//        let request: NSFetchRequest<NoteCD> = NoteCD.fetchRequest() as! NSFetchRequest<NoteCD>
+//        //let sortDescriptor = NSSortDescriptor(key: "text", ascending: false)
+//        request.sortDescriptors = []
+//        return request
+//    }
+//}

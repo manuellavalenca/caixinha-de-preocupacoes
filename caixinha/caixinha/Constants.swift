@@ -17,6 +17,7 @@ class Colors {
 }
 class Fonts {
     let largeTitleCustom = UIFont(name: "Futura", size: 35)
+    let smallTitleCustom = UIFont(name: "Futura", size: 20)
     let headlineCustom = Font.custom("Futura", size: 20)
     let captionCustom = Font.custom("Futura", size: 15)
 }
