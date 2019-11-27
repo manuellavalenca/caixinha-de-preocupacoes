@@ -33,7 +33,7 @@ struct ListView: View {
                     ZStack{
                         Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
                             .frame(minHeight: 150)
-                        Text(note.text!).frame()
+                        Text(note.text!)
                     }
                     Spacer()
                 }
@@ -41,8 +41,8 @@ struct ListView: View {
                 for index in offsets {
                     let notesFromCategory = self.notes.filter{$0.category == self.category}
                     if index < notesFromCategory.count {
+                        self.managedObjectContext.delete(notesFromCategory[index])
                         do {
-                            try self.managedObjectContext.delete(notesFromCategory[index])
                             try self.managedObjectContext.save()
                         } catch {
                             print(error)
@@ -53,8 +53,5 @@ struct ListView: View {
         }   .font(fonts.captionCustom)
             .foregroundColor(Color.white)
             .navigationBarTitle(self.category)
-//        if self.notes.filter{$0.category == category}.count == 0 {
-//             
-//        }
     }
 }
