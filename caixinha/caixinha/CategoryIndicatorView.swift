@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CategoryIndicatorView: View {
     var body: some View {
-        Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+        Rectangle().fill(Color(colors.pink)).cornerRadius(20)
         .frame(width: 25.0, height: 2.0, alignment: .center)
     }
 }

@@ -24,7 +24,7 @@
 		49D561A923798B0C00CD02E8 /* caixinhaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561A823798B0C00CD02E8 /* caixinhaUITests.swift */; };
 		49D561B723799DF800CD02E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561B623799DF800CD02E8 /* Constants.swift */; };
 		49D561B92379B15600CD02E8 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561B82379B15600CD02E8 /* ButtonStyle.swift */; };
-		49D561BB237ADB2B00CD02E8 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561BA237ADB2B00CD02E8 /* TextView.swift */; };
+		49D561BB237ADB2B00CD02E8 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */; };
 		49DD0A11238C683D00B02B6A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD0A10238C683D00B02B6A /* ShareViewController.swift */; };
 		49DD0A14238C683D00B02B6A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DD0A12238C683D00B02B6A /* MainInterface.storyboard */; };
 		49DD0A18238C683D00B02B6A /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49DD0A0E238C683D00B02B6A /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -96,7 +96,7 @@
 		49D561AA23798B0C00CD02E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D561B623799DF800CD02E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		49D561B82379B15600CD02E8 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
-		49D561BA237ADB2B00CD02E8 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		49DD0A0E238C683D00B02B6A /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DD0A10238C683D00B02B6A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		49DD0A13238C683D00B02B6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 				4965B634237C48B500929AA6 /* User.swift */,
 				49D561B623799DF800CD02E8 /* Constants.swift */,
 				49D561B82379B15600CD02E8 /* ButtonStyle.swift */,
-				49D561BA237ADB2B00CD02E8 /* TextView.swift */,
+				49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */,
 				498CA031237C337F004D9343 /* ListView.swift */,
 				49F097CC238C3A10008E1E5F /* NoteCD.swift */,
 				49F097CE238C4122008E1E5F /* CategoryCD.swift */,
@@ -401,7 +401,7 @@
 				49D561B723799DF800CD02E8 /* Constants.swift in Sources */,
 				49D5618923798B0B00CD02E8 /* caixinha.xcdatamodeld in Sources */,
 				49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */,
-				49D561BB237ADB2B00CD02E8 /* TextView.swift in Sources */,
+				49D561BB237ADB2B00CD02E8 /* TextFieldView.swift in Sources */,
 				49D561B92379B15600CD02E8 /* ButtonStyle.swift in Sources */,
 				4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */,
 				4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */,

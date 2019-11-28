@@ -12,13 +12,9 @@ import CoreData
 public class NoteCD: NSManagedObject, Identifiable {
     @NSManaged public var category: String?
     @NSManaged public var text: String?
+    
+    func configure(category: String, text: String) {
+        self.category = category
+        self.text = text
+    }
 }
-
-//extension NoteCD {
-//    static func getAllNotes() -> NSFetchRequest<NoteCD> {
-//        let request: NSFetchRequest<NoteCD> = NoteCD.fetchRequest() as! NSFetchRequest<NoteCD>
-//        //let sortDescriptor = NSSortDescriptor(key: "text", ascending: false)
-//        request.sortDescriptors = []
-//        return request
-//    }
-//}

@@ -22,7 +22,7 @@ struct TextFieldView: View {
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(colors.transparentBlue), lineWidth: 2)
+                        .stroke(Color.gray, lineWidth: 2)
             )
             Spacer()
         }

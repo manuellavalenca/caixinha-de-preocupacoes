@@ -19,7 +19,7 @@ struct CategoryCellView: View {
         ZStack {
             NavigationLink(destination: ListView(category: category)){
                 ZStack {
-                    Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                    Rectangle().fill(Color(colors.salmon)).cornerRadius(20)
                     .frame(minHeight: 150)
                     Text(self.category)
                 }

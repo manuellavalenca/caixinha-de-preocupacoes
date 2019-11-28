@@ -21,8 +21,7 @@ struct ContentView: View {
     
     
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.smallTitleCustom!]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: colors.darkPink, .font: fonts.smallTitleCustom!]
         self.textAdded = ""
     }
     
@@ -32,18 +31,18 @@ struct ContentView: View {
                 Spacer(minLength: 30)
                 VStack(alignment: .leading, spacing: 10) {
                     Section(header: Text("Adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        VStack(spacing: 10) {
+                        VStack(spacing: 20) {
                             ChooseCategoryView(currentCategory: $categorySelected)
-                                TextFieldView(currentText: $textAdded)
-                                Button(action: {
-                                    if self.textAdded != "" {
-                                        self.createNoteCD()
-                                    }
-                                    self.textAdded = ""
-                                    UIApplication.shared.endEditing()
-                                }) {
-                                    Text("guardar")
-                                }.buttonStyle(AddButtonStyle())
+                            TextFieldView(currentText: $textAdded)
+                            Button(action: {
+                                if self.textAdded != "" {
+                                    self.createNoteCD()
+                                }
+                                self.textAdded = ""
+                                UIApplication.shared.endEditing()
+                            }) {
+                                Text("guardar")
+                            }.buttonStyle(AddButtonStyle())
                         }
                     }.padding(.horizontal)
                     
@@ -62,15 +61,13 @@ struct ContentView: View {
                     }.padding()
                 }
             }
-            .navigationBarTitle("Caixinha", displayMode: .automatic)
-            //.listStyle(GroupedListStyle())
+            .navigationBarTitle("Caixinha", displayMode: .inline)
             //.padding()
         }
     }
     func createNoteCD() {
         let note = NoteCD(context: self.managedObjectContext)
-        note.text = self.textAdded
-        note.category = self.categorySelected
+        note.configure(category: self.categorySelected, text: self.textAdded)
         do {
             try self.managedObjectContext.save()
         } catch {

@@ -15,12 +15,12 @@ struct ListView: View {
     //@ObservedObject var user = User.shared
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
-    entity: NoteCD.entity(),
-    sortDescriptors: []) var notes: FetchedResults<NoteCD>
+        entity: NoteCD.entity(),
+        sortDescriptors: []) var notes: FetchedResults<NoteCD>
     
     init(category: String) {
         self.category = category
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.pink, .font: fonts.largeTitleCustom!]
         UITableView.appearance().separatorColor = UIColor.clear
         UITableView.appearance().backgroundColor = UIColor.clear
     }
@@ -31,27 +31,54 @@ struct ListView: View {
                 HStack {
                     Spacer()
                     ZStack{
-                        Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(colors.babyPink), lineWidth: 2)
                             .frame(minHeight: 150)
-                        Text(note.text!)
+                        Text(note.text!).padding()
                     }
                     Spacer()
-                }
-            }.onDelete{offsets in
-                for index in offsets {
-                    let notesFromCategory = self.notes.filter{$0.category == self.category}
-                    if index < notesFromCategory.count {
-                        self.managedObjectContext.delete(notesFromCategory[index])
-                        do {
-                            try self.managedObjectContext.save()
-                        } catch {
-                            print(error)
+                }.contextMenu {
+                    //                    Button(action: {
+                    //                        // Edit text of note
+                    //                    }) {
+                    //                        HStack {
+                    //                            Text("Edit")
+                    //                            Image(systemName: "compose")
+                    //                        }
+                    //                    }
+                    Button(action: {
+                        self.copy(text: note.text!)
+                    }) {
+                        HStack {
+                            Text("Copy")
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
+                    Button(action: {
+                        self.delete(note)
+                    }) {
+                        HStack {
+                            Text("Delete")
+                            Image(systemName: "trash")
                         }
                     }
                 }
             }
         }   .font(fonts.captionCustom)
-            .foregroundColor(Color.white)
+            .foregroundColor(Color(colors.darkGray))
             .navigationBarTitle(self.category)
+    }
+    
+    func copy(text: String) {
+        UIPasteboard.general.string = text
+    }
+    
+    func delete(_ note: NoteCD) {
+        self.managedObjectContext.delete(note)
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
+        }
     }
 }
