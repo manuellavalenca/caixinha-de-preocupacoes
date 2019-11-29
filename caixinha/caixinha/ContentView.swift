@@ -35,7 +35,7 @@ struct ContentView: View {
                     Section {
                         VStack(spacing: 20) {
                             TextFieldView(currentText: $textAdded)
-                            ChooseCategoryView(currentIndex: $indexCategorySelected)
+                            ChooseCategoryView(index: $indexCategorySelected)
                             Button(action: {
                                 if self.textAdded != "" {
                                     self.createNoteCD()

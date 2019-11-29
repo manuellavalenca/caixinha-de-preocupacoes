@@ -15,11 +15,10 @@ struct ChooseCategoryView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: CategoryCD.getAllCategories()) var categoriesCD: FetchedResults<CategoryCD>
     
-//    init() {
-//        UISegmentedControl.appearance().selectedSegmentTintColor = colors.babyPink
-//        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-//        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: colors.darkGray], for: .normal)
-//    }
+    init(index: Binding<Int>) {
+        self._currentIndex = index
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: colors.darkGray, .font: fonts.smallerTitleCustom!], for: .normal)
+    }
     
     var body: some View {
         VStack{

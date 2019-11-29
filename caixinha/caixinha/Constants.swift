@@ -18,6 +18,7 @@ class Colors {
     let orange = UIColor(red: 230/255, green: 105/255, blue: 85/255, alpha: 1)
     let purple = UIColor(red: 111/255, green: 94/255, blue: 123/255, alpha: 1)
     let salmon = UIColor(red: 244/255, green: 122/255, blue: 140/255, alpha: 1)
+    let transparentDarkGray = UIColor(red: 101/255, green: 93/255, blue: 93/255, alpha: 0.1)
     let green = UIColor(red: 89/255, green: 212/255, blue: 199/255, alpha: 1)
     let darkPink = UIColor(red: 166/255, green: 86/255, blue: 101/255, alpha: 1)
     let beige = UIColor(red: 242/255, green: 239/255, blue: 233/255, alpha: 1)
@@ -26,6 +27,7 @@ class Colors {
 class Fonts {
     let largeTitleCustom = UIFont(name: "Futura", size: 35)
     let smallTitleCustom = UIFont(name: "Futura", size: 20)
+    let smallerTitleCustom = UIFont(name: "Futura", size: 15)
     let headlineCustom = Font.custom("Futura", size: 20)
     let captionCustom = Font.custom("Futura", size: 15)
     let largeFont = Font.custom("Futura", size: 30)
