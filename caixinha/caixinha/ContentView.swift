@@ -13,7 +13,7 @@ import Combine
 
 struct ContentView: View {
     @State private var textAdded = ""
-    @State private var categorySelected = "trabalho"
+    @State private var indexCategorySelected = 0
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: NoteCD.entity(),
@@ -21,19 +21,21 @@ struct ContentView: View {
     
     
     init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.darkPink, .font: fonts.largeTitleCustom!]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: colors.darkPink, .font: fonts.smallTitleCustom!]
+        UITableView.appearance().separatorColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor.clear
         self.textAdded = ""
     }
     
     var body: some View {
-        NavigationView() {
+        NavigationView {
             ScrollView(showsIndicators: false) {
-                Spacer(minLength: 30)
-                VStack(alignment: .leading, spacing: 10) {
-                    Section(header: Text("Adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                VStack(alignment: .leading, spacing: 20) {
+                    Section {
                         VStack(spacing: 20) {
-                            ChooseCategoryView(currentCategory: $categorySelected)
                             TextFieldView(currentText: $textAdded)
+                            ChooseCategoryView(currentIndex: $indexCategorySelected)
                             Button(action: {
                                 if self.textAdded != "" {
                                     self.createNoteCD()
@@ -43,31 +45,28 @@ struct ContentView: View {
                             }) {
                                 Text("guardar")
                             }.buttonStyle(AddButtonStyle())
-                        }
-                    }.padding(.horizontal)
+                        }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
+                    }
                     
                     Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        ScrollView (.vertical, showsIndicators: false) {
-                            VStack {
-                                ForEach(User.shared.categories, id: \.self) { category in
-                                    HStack {
-                                        Spacer()
-                                        CategoryCellView(category: category)
-                                        Spacer()
-                                    }
+                        VStack(spacing: 10) {
+                            ForEach(User.shared.categories, id: \.self) { category in
+                                HStack {
+                                    Spacer()
+                                    CategoryCellView(category: category)
+                                    Spacer()
                                 }
                             }
-                        }
-                    }.padding()
+                        }.padding()
+                    }//.padding()
+                }.padding()
                 }
-            }
             .navigationBarTitle("Caixinha", displayMode: .inline)
-            //.padding()
-        }
+        }.background(Color.green)
     }
     func createNoteCD() {
         let note = NoteCD(context: self.managedObjectContext)
-        note.configure(category: self.categorySelected, text: self.textAdded)
+        note.configure(category: User.shared.categories[self.indexCategorySelected], text: self.textAdded)
         do {
             try self.managedObjectContext.save()
         } catch {

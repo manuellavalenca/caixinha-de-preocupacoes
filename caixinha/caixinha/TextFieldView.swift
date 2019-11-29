@@ -16,10 +16,11 @@ struct TextFieldView: View {
     var body: some View {
         HStack {
             Spacer()
-            TextField("Escreva sua preocupação", text: $currentText)
-                .font(fonts.captionCustom)
+            TextField(" O que te preocupa?", text: $currentText)
+                .font(fonts.largeFont)
                 .foregroundColor(Color(colors.darkGray))
                 .padding()
+                .accentColor(Color(colors.babyPink))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.gray, lineWidth: 2)

@@ -21,7 +21,7 @@ struct AddButtonStyle: ButtonStyle {
         configuration.label
             .foregroundColor(configuration.isPressed ? Color.gray : Color.white)
             .font(fonts.captionCustom)
-            .padding(5)
+            .padding(10)
             .background(Color(colors.darkPink))
             .cornerRadius(10)
     }
