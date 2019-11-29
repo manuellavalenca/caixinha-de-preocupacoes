@@ -58,7 +58,7 @@ struct ContentView: View {
                                 }
                             }
                         }.padding()
-                    }//.padding()
+                    }
                 }.padding()
                 }
             .navigationBarTitle("Caixinha", displayMode: .inline)

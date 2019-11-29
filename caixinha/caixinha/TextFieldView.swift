@@ -20,10 +20,9 @@ struct TextFieldView: View {
                 .font(fonts.largeFont)
                 .foregroundColor(Color(colors.darkGray))
                 .padding()
-                .overlay(
-                    Rectangle().fill(Color(colors.transparentDarkGray)).cornerRadius(20)
-                    .frame(minHeight: 50)
-            )
+                .accentColor(Color(colors.babyPink))
+                .background(Color(colors.transparentDarkGray))
+                .cornerRadius(20)
             Spacer()
         }
     }
