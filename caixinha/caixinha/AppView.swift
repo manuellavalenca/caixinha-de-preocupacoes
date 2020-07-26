@@ -11,7 +11,7 @@ import LocalAuthentication
 import UIKit
 import Combine
 
-struct ContentView: View {
+struct AppView: View {
     @State private var textAdded = ""
     @State private var showAlert = false
     @State private var indexCategorySelected = 0
@@ -33,42 +33,51 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 20) {
-                    Section {
-                        VStack(spacing: 20) {
-                            TextFieldView(currentText: $textAdded)
-                            ChooseCategoryView(index: $indexCategorySelected)
-                            Button(action: {
-                                if self.textAdded != "" {
-                                    self.createNoteCD()
-                                }
-                                self.textAdded = ""
-                                UIApplication.shared.endEditing()
-                            }) {
-                                Text("guardar")
-                            }.buttonStyle(AddButtonStyle())
-                        }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
-                    }
+            NavigationView {
+                TabView {
                     
-                    Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        VStack(spacing: 10) {
-                            ForEach(User.shared.categories, id: \.self) { category in
-                                HStack {
-                                    Spacer()
-                                    CategoryCellView(category: category)
-                                    Spacer()
-                                }
+                    // First tab: Add notes to a caixinha
+                    ScrollView(showsIndicators: false) {
+                        VStack(alignment: .leading, spacing: 20) {
+                            Section {
+                                VStack(spacing: 20) {
+                                    TextFieldView(currentText: $textAdded)
+                                    ChooseCategoryView(index: $indexCategorySelected)
+                                    Button(action: { self.addText()
+                                    }) {
+                                        Text("guardar")
+                                    }.buttonStyle(AddButtonStyle())
+                                }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
                             }
                         }.padding()
                     }
-                }.padding()
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Novo bilhete")
+                    }
+                    
+                    // Second tab: See notes added in caixinha
+                    ScrollView(showsIndicators: false) {
+                        CaixinhaView()
+                    }
+                    .tabItem {
+                    Image(systemName: "list.dash")
+                    Text("Caixinha")
+                    }
                 }
-            .navigationBarTitle("Caixinha", displayMode: .inline)
-        }.background(Color.green)
-        .alert(isPresented: $showAlert, content: {self.alert})
+            }
+            .background(Color.green)
+            .alert(isPresented: $showAlert, content: {self.alert})
     }
+    
+    func addText() {
+        if self.textAdded != "" {
+            self.createNoteCD()
+        }
+        self.textAdded = ""
+        UIApplication.shared.endEditing()
+    }
+    
     func createNoteCD() {
         let note = NoteCD(context: self.managedObjectContext)
         note.configure(category: User.shared.categories[self.indexCategorySelected], text: self.textAdded)
@@ -83,7 +92,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AppView()
     }
 }
 
