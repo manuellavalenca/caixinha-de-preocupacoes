@@ -13,11 +13,15 @@ import Combine
 
 struct ContentView: View {
     @State private var textAdded = ""
+    @State private var showAlert = false
     @State private var indexCategorySelected = 0
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: NoteCD.entity(),
         sortDescriptors: []) var notes: FetchedResults<NoteCD>
+    var alert: Alert {
+        Alert(title: Text("Bilhete adicionado!"), message: Text("Sua preocupação foi guardada na caixinha"), dismissButton: .default(Text("Ok")))
+    }
     
     
     init() {
@@ -63,6 +67,7 @@ struct ContentView: View {
                 }
             .navigationBarTitle("Caixinha", displayMode: .inline)
         }.background(Color.green)
+        .alert(isPresented: $showAlert, content: {self.alert})
     }
     func createNoteCD() {
         let note = NoteCD(context: self.managedObjectContext)
@@ -72,6 +77,7 @@ struct ContentView: View {
         } catch {
             print(error)
         }
+        self.showAlert.toggle()
     }
 }
 
