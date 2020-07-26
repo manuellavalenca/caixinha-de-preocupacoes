@@ -8,37 +8,42 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct ListView: View {
     let category: String
-    var notes: [String] = []
+    //@ObservedObject var user = User.shared
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: NoteCD.entity(),
+        sortDescriptors: []) var notes: FetchedResults<NoteCD>
     
     init(category: String) {
         self.category = category
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.pink, .font: fonts.largeTitleCustom!]
+        UITableView.appearance().separatorColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor.clear
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                Spacer()
-                VStack {
-                    ForEach(User.shared.notes.filter{$0.category == self.category}, id: \.id) { note in
-                        HStack {
-                            Spacer()
-                            ZStack{
-                                Rectangle().fill(Color(colors.lightBlue)).cornerRadius(20)
-                                    .frame(width: 350.0, height: 125.0, alignment: .center)
-                                Text(note.text)
-                            }
-                            Spacer()
-                        }
+        List {
+            ForEach(self.notes.filter{$0.category == category}, id: \.id) { note in
+                HStack {
+                    Spacer()
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(colors.babyPink), lineWidth: 2)
+                            .frame(minHeight: 150)
+                        Text(note.text!).padding()
                     }
+                    Spacer()
+                }.contextMenu {
+                    ContextMenuView(note: note)
                 }
-                Spacer()
-            }.font(fonts.captionCustom)
-                .accentColor(Color.clear)
-                .foregroundColor(Color.white)
-        }.navigationBarTitle(self.category)
+            }
+        }   .font(fonts.captionCustom)
+            .foregroundColor(Color(colors.darkGray))
+            .navigationBarTitle(self.category)
+            .padding()
     }
 }

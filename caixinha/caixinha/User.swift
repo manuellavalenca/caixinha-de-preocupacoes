@@ -7,13 +7,19 @@
 //
 
 import Foundation
+import SwiftUI
 
-class User {
+class User: ObservableObject {
     static var shared = User()
-    var notes: [Note] = [Note(text: "que saco me atrasei para o evento", category: "trabalho"), Note(text: "que saco me atrasei para o médico", category: "saúde"), Note(text: "que saco me atrasei para o encontro", category: "relacionamentos")]
+    @Published var notes = [Note]()
+    var categories: [String] = ["trabalho", "estudos", "saúde", "outros"]
     
     func addNote(text: String, category: String) {
         self.notes.append(Note(text: text, category: category))
+    }
+    
+    func getNotes(from category: String) -> [Note] {
+        return User.shared.notes.filter{$0.category == category}
     }
 }
 

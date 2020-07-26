@@ -12,7 +12,6 @@ import SwiftUI
 struct CategoryButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(configuration.isPressed ? Color(colors.lightBlue): Color.gray)
             .font(fonts.captionCustom)
     }
 }
@@ -20,7 +19,10 @@ struct CategoryButtonStyle: ButtonStyle {
 struct AddButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(configuration.isPressed ? Color.gray : Color(colors.lightBlue))
+            .foregroundColor(configuration.isPressed ? Color.gray : Color.white)
             .font(fonts.captionCustom)
+            .padding(10)
+            .background(Color(colors.darkPink))
+            .cornerRadius(10)
     }
 }

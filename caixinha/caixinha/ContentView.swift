@@ -7,70 +7,77 @@
 //
 
 import SwiftUI
+import LocalAuthentication
+import UIKit
+import Combine
 
 struct ContentView: View {
-    init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.lightBlue, .font: fonts.largeTitleCustom!]
+    @State private var textAdded = ""
+    @State private var showAlert = false
+    @State private var indexCategorySelected = 0
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: NoteCD.entity(),
+        sortDescriptors: []) var notes: FetchedResults<NoteCD>
+    var alert: Alert {
+        Alert(title: Text("Bilhete adicionado!"), message: Text("Sua preocupação foi guardada na caixinha"), dismissButton: .default(Text("Ok")))
     }
     
-    @State var textAdded: String = ""
-    @State var buttonSelected: String = ""
-    var categories: [String] = ["trabalho", "relacionamentos", "saúde"]
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: colors.darkPink, .font: fonts.largeTitleCustom!]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: colors.darkPink, .font: fonts.smallTitleCustom!]
+        UITableView.appearance().separatorColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor.clear
+        self.textAdded = ""
+    }
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                Spacer()
-                VStack(alignment: .leading, spacing: 16) {
-                    Section(header: Text("adicionar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        HStack(alignment: .center) {
-                            Spacer()
-                            ForEach(self.categories, id: \.self) { category in
-                                Button(action: {}) {
-                                    Text(category)
-                                }.buttonStyle(CategoryButtonStyle())
-                            }
-                            Spacer()
-                        }
-                        CategoryIndicatorView()
-                        VStack {
-                            HStack {
-                                Spacer()
-                                TextView(text: $textAdded)
-                                    .frame(minWidth: 200, maxWidth: 200, minHeight: 200, maxHeight: .infinity, alignment: .center)
-                                .border(Color(colors.lightBlue), width: 2.0)
-                                .statusBar(hidden: true)
-                                .cornerRadius(20)
-                                .font(fonts.headlineCustom)
-                                .foregroundColor(Color(colors.darkGray))
-                                Spacer()
-                            }
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    Section {
+                        VStack(spacing: 20) {
+                            TextFieldView(currentText: $textAdded)
+                            ChooseCategoryView(index: $indexCategorySelected)
                             Button(action: {
-                                User.shared.addNote(text: "oie", category: "trabalho")
-                                print(User.shared.notes)
-                            }) {
-                                Text("adicionar bilhete")
-                            }.buttonStyle(AddButtonStyle())
-                        }
-                    }.padding(.horizontal)
-                    
-                    Section(header: Text("caixinha").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-                        ScrollView (.horizontal, showsIndicators: false) {
-                             HStack {
-                                ForEach(self.categories, id: \.self) { category in
-                                    ZStack {
-                                        CategoryCellView(category: category)
-                                    }
+                                if self.textAdded != "" {
+                                    self.createNoteCD()
                                 }
-                             }
-                        }
-                    }.padding(.horizontal)
+                                self.textAdded = ""
+                                UIApplication.shared.endEditing()
+                            }) {
+                                Text("guardar")
+                            }.buttonStyle(AddButtonStyle())
+                        }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
+                    }
+                    
+                    Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                        VStack(spacing: 10) {
+                            ForEach(User.shared.categories, id: \.self) { category in
+                                HStack {
+                                    Spacer()
+                                    CategoryCellView(category: category)
+                                    Spacer()
+                                }
+                            }
+                        }.padding()
+                    }
+                }.padding()
                 }
-            }
-            .navigationBarTitle("caixinha de preocupações", displayMode: .large).lineLimit(nil)
-            .listStyle(GroupedListStyle())
-            .padding(.top)
+            .navigationBarTitle("Caixinha", displayMode: .inline)
+        }.background(Color.green)
+        .alert(isPresented: $showAlert, content: {self.alert})
+    }
+    func createNoteCD() {
+        let note = NoteCD(context: self.managedObjectContext)
+        note.configure(category: User.shared.categories[self.indexCategorySelected], text: self.textAdded)
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
         }
+        self.showAlert.toggle()
     }
 }
 
@@ -86,5 +93,11 @@ struct SectionHeader: View {
     var body: some View {
         Text(title)
             .font(.headline)
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
