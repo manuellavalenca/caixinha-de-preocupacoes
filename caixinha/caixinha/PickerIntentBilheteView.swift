@@ -1,19 +1,18 @@
 //
-//  ChooseCategoryView.swift
+//  ChooseIntentBilheteView.swift
 //  caixinha
 //
-//  Created by Manuella Valença on 22/11/19.
-//  Copyright © 2019 Manuella Valença. All rights reserved.
+//  Created by Manuella Valença on 26/07/20.
+//  Copyright © 2020 Manuella Valença. All rights reserved.
 //
 
-import Foundation
 import Foundation
 import SwiftUI
 
-struct ChooseCategoryView: View {
+struct PickerIntentBilheteView: View {
     @Binding var currentIndex: Int
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(fetchRequest: CategoryCD.getAllCategories()) var categoriesCD: FetchedResults<CategoryCD>
+    let intentList = ["Algo bom", "Algo que te preocupa"]
     
     init(index: Binding<Int>) {
         self._currentIndex = index
@@ -26,10 +25,10 @@ struct ChooseCategoryView: View {
             Section {
                 Picker(selection: $currentIndex, label:
                     Text("Categoria"), content: {
-                        ForEach(0..<User.shared.categories.count){ index in
-                            Text(User.shared.categories[index]).tag(index)
+                        ForEach(0..<self.intentList.count){ index in
+                            Text(self.intentList[index]).tag(index)
                         }
-                }
+                    }
                 ).font(fonts.captionCustom)
                     .pickerStyle(SegmentedPickerStyle())
                     .foregroundColor(Color(colors.darkGray))

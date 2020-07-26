@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494F038624CE443E00F3B5D5 /* PickerIntentBilheteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494F038524CE443E00F3B5D5 /* PickerIntentBilheteView.swift */; };
 		49593FFA24CDE51C00056044 /* CaixinhaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49593FF924CDE51C00056044 /* CaixinhaView.swift */; };
-		49593FFC24CDEB4B00056044 /* BigTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49593FFB24CDEB4B00056044 /* BigTextView.swift */; };
 		4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */; };
 		4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B630237C390D00929AA6 /* CategoryCellView.swift */; };
 		4965B635237C48B500929AA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B634237C48B500929AA6 /* User.swift */; };
 		4965B6412388065600929AA6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4965B6402388065600929AA6 /* CloudKit.framework */; };
 		496AFC2A23913DFC0041503A /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFC2923913DFC0041503A /* ContextMenuView.swift */; };
 		498CA032237C337F004D9343 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CA031237C337F004D9343 /* ListView.swift */; };
-		49D3FCB82388783500EE8795 /* ChooseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */; };
+		49D3FCB82388783500EE8795 /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3FCB72388783500EE8795 /* PickerCategoryView.swift */; };
 		49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5618323798B0B00CD02E8 /* AppDelegate.swift */; };
 		49D5618623798B0B00CD02E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5618523798B0B00CD02E8 /* SceneDelegate.swift */; };
 		49D5618923798B0B00CD02E8 /* caixinha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49D5618723798B0B00CD02E8 /* caixinha.xcdatamodeld */; };
@@ -75,8 +75,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		494F038524CE443E00F3B5D5 /* PickerIntentBilheteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerIntentBilheteView.swift; sourceTree = "<group>"; };
 		49593FF924CDE51C00056044 /* CaixinhaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaixinhaView.swift; sourceTree = "<group>"; };
-		49593FFB24CDEB4B00056044 /* BigTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextView.swift; sourceTree = "<group>"; };
 		4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndicatorView.swift; sourceTree = "<group>"; };
 		4965B630237C390D00929AA6 /* CategoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellView.swift; sourceTree = "<group>"; };
 		4965B634237C48B500929AA6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		4965B6402388065600929AA6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		496AFC2923913DFC0041503A /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 		498CA031237C337F004D9343 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryView.swift; sourceTree = "<group>"; };
+		49D3FCB72388783500EE8795 /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
 		49D5618023798B0B00CD02E8 /* caixinha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = caixinha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D5618323798B0B00CD02E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49D5618523798B0B00CD02E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,9 +182,10 @@
 				4965B63E2388064100929AA6 /* caixinha.entitlements */,
 				49D5618323798B0B00CD02E8 /* AppDelegate.swift */,
 				49D5618A23798B0B00CD02E8 /* AppView.swift */,
+				49593FF924CDE51C00056044 /* CaixinhaView.swift */,
 				49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */,
-				49593FFB24CDEB4B00056044 /* BigTextView.swift */,
-				49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */,
+				49D3FCB72388783500EE8795 /* PickerCategoryView.swift */,
+				494F038524CE443E00F3B5D5 /* PickerIntentBilheteView.swift */,
 				498CA031237C337F004D9343 /* ListView.swift */,
 				4965B634237C48B500929AA6 /* User.swift */,
 				49D561B623799DF800CD02E8 /* Constants.swift */,
@@ -193,7 +194,6 @@
 				49D5618523798B0B00CD02E8 /* SceneDelegate.swift */,
 				49D561B82379B15600CD02E8 /* ButtonStyle.swift */,
 				496AFC2923913DFC0041503A /* ContextMenuView.swift */,
-				49593FF924CDE51C00056044 /* CaixinhaView.swift */,
 				49DDDFB9238F144500118119 /* SwiftUIView.swift */,
 				4965B630237C390D00929AA6 /* CategoryCellView.swift */,
 				4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */,
@@ -405,10 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				498CA032237C337F004D9343 /* ListView.swift in Sources */,
-				49D3FCB82388783500EE8795 /* ChooseCategoryView.swift in Sources */,
+				49D3FCB82388783500EE8795 /* PickerCategoryView.swift in Sources */,
 				49F097CF238C4122008E1E5F /* CategoryCD.swift in Sources */,
 				49D561B723799DF800CD02E8 /* Constants.swift in Sources */,
-				49593FFC24CDEB4B00056044 /* BigTextView.swift in Sources */,
 				49D5618923798B0B00CD02E8 /* caixinha.xcdatamodeld in Sources */,
 				496AFC2A23913DFC0041503A /* ContextMenuView.swift in Sources */,
 				49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */,
@@ -418,6 +417,7 @@
 				4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */,
 				49F097CD238C3A10008E1E5F /* NoteCD.swift in Sources */,
 				49D5618B23798B0B00CD02E8 /* AppView.swift in Sources */,
+				494F038624CE443E00F3B5D5 /* PickerIntentBilheteView.swift in Sources */,
 				49D5618623798B0B00CD02E8 /* SceneDelegate.swift in Sources */,
 				4965B635237C48B500929AA6 /* User.swift in Sources */,
 				49593FFA24CDE51C00056044 /* CaixinhaView.swift in Sources */,

@@ -10,16 +10,18 @@ import SwiftUI
 
 struct CaixinhaView: View {
     var body: some View {
-        Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
-            VStack(spacing: 10) {
-                ForEach(User.shared.categories, id: \.self) { category in
-                    HStack {
-                        Spacer()
-                        CategoryCellView(category: category)
-                        Spacer()
+        ScrollView(showsIndicators: false) {
+            Section(header: Text("Explorar").font(fonts.headlineCustom).foregroundColor(Color(colors.darkGray))) {
+                VStack(spacing: 10) {
+                    ForEach(User.shared.categories, id: \.self) { category in
+                        HStack {
+                            Spacer()
+                            CategoryCellView(category: category)
+                            Spacer()
+                        }
                     }
-                }
-            }.padding()
+                }.padding()
+            }
         }
     }
 }

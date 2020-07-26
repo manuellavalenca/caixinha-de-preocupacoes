@@ -15,12 +15,13 @@ struct AppView: View {
     @State private var textAdded = ""
     @State private var showAlert = false
     @State private var indexCategorySelected = 0
+    @State private var indexIntentSelected = 0
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: NoteCD.entity(),
         sortDescriptors: []) var notes: FetchedResults<NoteCD>
     var alert: Alert {
-        Alert(title: Text("Bilhete adicionado!"), message: Text("Sua preocupação foi guardada na caixinha"), dismissButton: .default(Text("Ok")))
+        Alert(title: Text("Bilhete adicionado!"), message: Text("Guardamos seu bilhete na caixinha apropriada!"), dismissButton: .default(Text("Ok")))
     }
     
     
@@ -33,70 +34,46 @@ struct AppView: View {
     }
     
     var body: some View {
-            NavigationView {
-                TabView {
-                    // First tab: Add notes to a caixinha
-                    ScrollView(showsIndicators: false) {
-                        VStack(alignment: .leading) {
-                            Section {
-                                VStack() {
-                                    //ChooseCategoryView(index: $indexCategorySelected)
-                                    Picker(selection: $indexCategorySelected, label:
-                                        Text("Categoria"), content: {
-                                            ForEach(0..<User.shared.categories.count){ index in
-                                                Text(User.shared.categories[index]).tag(index)
-                                            }
-                                    }
-                                    ).font(fonts.captionCustom)
-                                        .pickerStyle(SegmentedPickerStyle())
-                                        .foregroundColor(Color(colors.darkGray))
-                                    BigTextView(text: defineTextAccordingToCategory(category: indexCategorySelected))
-                                    TextFieldView(currentText: $textAdded)
-                                    Button(action: { self.addText()
-                                    }) {
-                                        Text("guardar")
-                                    }.buttonStyle(AddButtonStyle())
-                                }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
-                            }
-                        }.padding()
+        TabView {
+            // First tab: Add notes to a caixinha
+            ScrollView(showsIndicators: false) {
+                Section {
+                    HStack {
+                        Text("Caixinha")
+                            .fontWeight(.bold)
+                        Spacer(minLength: 0)
                     }
-                    .tabItem {
-                        Image(systemName: "list.dash")
-                        Text("Novo bilhete")
-                    }
-                    
-                    // Second tab: See notes added in caixinha
-                    ScrollView(showsIndicators: false) {
-                        CaixinhaView()
-                    }
-                    .tabItem {
-                    Image(systemName: "list.dash")
-                    Text("Caixinha")
-                    }
-                }
+                    .padding(.horizontal)
+                    VStack() {
+                        PickerCategoryView(index: $indexCategorySelected)
+                        Text("O que você quer guardar hoje na sua caixinha \(User.shared.categories[indexCategorySelected])?")
+                            .font(.largeTitle)
+                            .foregroundColor(Color(colors.darkGray))
+                            .accentColor(Color(colors.babyPink))
+                            .padding()
+                        TextFieldView(currentText: $textAdded).padding()
+                        Button(action: { self.addText()
+                        }) {
+                            Text("Colocar bilhete na caixinha")
+                        }.buttonStyle(AddButtonStyle())
+                    }.padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                }.padding()
             }
-            .background(Color.green)
-            .alert(isPresented: $showAlert, content: {self.alert})
-    }
-    
-    func categoryChanged(_ tag: Int) {
-        print("category changed: \(tag)")
-    }
-    
-    func defineTextAccordingToCategory(category: Int) -> String {
-        // ["geral","trabalho", "estudos", "saúde"]
-        var text = ""
-        
-        if category == 0 {
-            text = "Em geral,\ncom o que você tem se preocupado?"
-        } else if category == 1 {
-            text = "No trabalho,\ncom o que você tem se preocupado?"
-        } else if category == 2 {
-            text = "Nos estudos,\ncom o que você tem se preocupado?"
-        } else if category == 3 {
-            text = "Na saúde,\ncom o que você tem se preocupado?"
+            .tabItem {
+                Image(systemName: "list.dash")
+                Text("Deixar bilhete")
+            }
+            
+            // Second tab: See notes added in caixinha
+            NavigationView {
+                CaixinhaView()
+            }
+            .tabItem {
+                Image(systemName: "list.dash")
+                Text("Ver caixinhas")
+            }
         }
-        return text
+        .alert(isPresented: $showAlert, content: {self.alert})
     }
     
     func addText() {
