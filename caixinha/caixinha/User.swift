@@ -12,7 +12,7 @@ import SwiftUI
 class User: ObservableObject {
     static var shared = User()
     @Published var notes = [Note]()
-    var categories: [String] = ["trabalho", "estudos", "saúde", "outros"]
+    var categories: [String] = ["geral","trabalho", "estudos", "saúde"]
     
     func addNote(text: String, category: String) {
         self.notes.append(Note(text: text, category: category))

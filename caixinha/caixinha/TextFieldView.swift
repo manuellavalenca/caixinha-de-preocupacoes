@@ -16,7 +16,7 @@ struct TextFieldView: View {
     var body: some View {
         HStack {
             Spacer()
-            TextField(" O que te preocupa?", text: $currentText)
+            TextField("Desabafa aqui!", text: $currentText)
                 .font(fonts.largeFont)
                 .foregroundColor(Color(colors.darkGray))
                 .padding()
@@ -27,20 +27,3 @@ struct TextFieldView: View {
         }
     }
 }
-
-//struct TextView: UIViewRepresentable {
-//    @Binding var text: String
-//
-//    func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
-//        let view = UITextView()
-//        view.isEditable = true
-//        return UITextView()
-//    }
-//
-//    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
-//        text = uiView.text
-////        print("oia o texto na view: \(String(describing: uiView.text))")
-////        print("oia o texto na textview: \(self.text)")
-//    }
-//
-//}

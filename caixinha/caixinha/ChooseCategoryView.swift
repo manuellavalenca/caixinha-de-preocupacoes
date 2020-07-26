@@ -34,31 +34,6 @@ struct ChooseCategoryView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .foregroundColor(Color(colors.darkGray))
             }
-            //}.frame(maxHeight: 100)
         }
-        
-        //        VStack(spacing: 5) {
-        //            ScrollView(.horizontal, showsIndicators: false){
-        //                HStack {
-        //                            Picker(selection: $currentIndex, label:
-        //                                Text(""), content: {
-        //                                    ForEach(0..<User.shared.categories.count){ index in
-        //                                        Text(User.shared.categories[index]).tag(index)
-        //                                    }
-        //                                })
-        
-        //                    ForEach(0..<self.allCategories.count) { index in
-        //                        Spacer()
-        //                        Button(action: {
-        //                            self.currentCategory = self.allCategories[index]
-        //                            print("selected \(self.currentCategory)")
-        //                        }) {
-        //                            Text(self.allCategories[index])
-        //                        }.buttonStyle(CategoryButtonStyle())
-        //                            .foregroundColor(self.currentCategory == self.allCategories[index] ? Color(colors.darkPink) : Color.gray)
-        //                    }
-        //                }.padding()
-        //}
-        //}
     }
 }

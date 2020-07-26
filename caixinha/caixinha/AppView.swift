@@ -35,14 +35,23 @@ struct AppView: View {
     var body: some View {
             NavigationView {
                 TabView {
-                    
                     // First tab: Add notes to a caixinha
                     ScrollView(showsIndicators: false) {
-                        VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading) {
                             Section {
-                                VStack(spacing: 20) {
+                                VStack() {
+                                    //ChooseCategoryView(index: $indexCategorySelected)
+                                    Picker(selection: $indexCategorySelected, label:
+                                        Text("Categoria"), content: {
+                                            ForEach(0..<User.shared.categories.count){ index in
+                                                Text(User.shared.categories[index]).tag(index)
+                                            }
+                                    }
+                                    ).font(fonts.captionCustom)
+                                        .pickerStyle(SegmentedPickerStyle())
+                                        .foregroundColor(Color(colors.darkGray))
+                                    BigTextView(text: defineTextAccordingToCategory(category: indexCategorySelected))
                                     TextFieldView(currentText: $textAdded)
-                                    ChooseCategoryView(index: $indexCategorySelected)
                                     Button(action: { self.addText()
                                     }) {
                                         Text("guardar")
@@ -70,6 +79,26 @@ struct AppView: View {
             .alert(isPresented: $showAlert, content: {self.alert})
     }
     
+    func categoryChanged(_ tag: Int) {
+        print("category changed: \(tag)")
+    }
+    
+    func defineTextAccordingToCategory(category: Int) -> String {
+        // ["geral","trabalho", "estudos", "saúde"]
+        var text = ""
+        
+        if category == 0 {
+            text = "Em geral,\ncom o que você tem se preocupado?"
+        } else if category == 1 {
+            text = "No trabalho,\ncom o que você tem se preocupado?"
+        } else if category == 2 {
+            text = "Nos estudos,\ncom o que você tem se preocupado?"
+        } else if category == 3 {
+            text = "Na saúde,\ncom o que você tem se preocupado?"
+        }
+        return text
+    }
+    
     func addText() {
         if self.textAdded != "" {
             self.createNoteCD()
@@ -87,6 +116,18 @@ struct AppView: View {
             print(error)
         }
         self.showAlert.toggle()
+    }
+    
+}
+
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { selection in
+                self.wrappedValue = selection
+                handler(selection)
+        })
     }
 }
 

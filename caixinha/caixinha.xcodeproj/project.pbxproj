@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49593FFA24CDE51C00056044 /* CaixinhaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49593FF924CDE51C00056044 /* CaixinhaView.swift */; };
+		49593FFC24CDEB4B00056044 /* BigTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49593FFB24CDEB4B00056044 /* BigTextView.swift */; };
 		4965B62F237C379000929AA6 /* CategoryIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */; };
 		4965B631237C390D00929AA6 /* CategoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B630237C390D00929AA6 /* CategoryCellView.swift */; };
 		4965B635237C48B500929AA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965B634237C48B500929AA6 /* User.swift */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		49593FF924CDE51C00056044 /* CaixinhaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaixinhaView.swift; sourceTree = "<group>"; };
+		49593FFB24CDEB4B00056044 /* BigTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextView.swift; sourceTree = "<group>"; };
 		4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndicatorView.swift; sourceTree = "<group>"; };
 		4965B630237C390D00929AA6 /* CategoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellView.swift; sourceTree = "<group>"; };
 		4965B634237C48B500929AA6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -179,19 +181,20 @@
 			children = (
 				4965B63E2388064100929AA6 /* caixinha.entitlements */,
 				49D5618323798B0B00CD02E8 /* AppDelegate.swift */,
+				49D5618A23798B0B00CD02E8 /* AppView.swift */,
+				49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */,
+				49593FFB24CDEB4B00056044 /* BigTextView.swift */,
+				49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */,
+				498CA031237C337F004D9343 /* ListView.swift */,
 				4965B634237C48B500929AA6 /* User.swift */,
 				49D561B623799DF800CD02E8 /* Constants.swift */,
 				49F097CC238C3A10008E1E5F /* NoteCD.swift */,
 				49F097CE238C4122008E1E5F /* CategoryCD.swift */,
 				49D5618523798B0B00CD02E8 /* SceneDelegate.swift */,
 				49D561B82379B15600CD02E8 /* ButtonStyle.swift */,
-				49D561BA237ADB2B00CD02E8 /* TextFieldView.swift */,
-				498CA031237C337F004D9343 /* ListView.swift */,
 				496AFC2923913DFC0041503A /* ContextMenuView.swift */,
-				49D5618A23798B0B00CD02E8 /* AppView.swift */,
 				49593FF924CDE51C00056044 /* CaixinhaView.swift */,
 				49DDDFB9238F144500118119 /* SwiftUIView.swift */,
-				49D3FCB72388783500EE8795 /* ChooseCategoryView.swift */,
 				4965B630237C390D00929AA6 /* CategoryCellView.swift */,
 				4965B62E237C379000929AA6 /* CategoryIndicatorView.swift */,
 				49D5618C23798B0C00CD02E8 /* Assets.xcassets */,
@@ -405,6 +408,7 @@
 				49D3FCB82388783500EE8795 /* ChooseCategoryView.swift in Sources */,
 				49F097CF238C4122008E1E5F /* CategoryCD.swift in Sources */,
 				49D561B723799DF800CD02E8 /* Constants.swift in Sources */,
+				49593FFC24CDEB4B00056044 /* BigTextView.swift in Sources */,
 				49D5618923798B0B00CD02E8 /* caixinha.xcdatamodeld in Sources */,
 				496AFC2A23913DFC0041503A /* ContextMenuView.swift in Sources */,
 				49D5618423798B0B00CD02E8 /* AppDelegate.swift in Sources */,
